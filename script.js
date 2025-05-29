@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="company">${job.company}</p>
             <p class="location">${job.location}</p>
             <p class="domaine">Domaine: ${job.domaine}</p>
-            <a href="job-board.html" class="view-more-button" data-index="${index}">Voir plus</a>
+            <a href="Blogs/job-board.html" class="view-more-button" data-index="${index}">Voir plus</a>
         `;
         return jobCard;
     }
