@@ -1,10 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+<script>
+document.addEventListener('DOMContentLoaded', function () {
     const loadMoreButton = document.getElementById('loadMoreJobs');
     const jobListingsContainer = document.getElementById('jobListings');
 
-    let jobCount = 0; // Start with 0 displayed jobs
-    const jobsToAdd = 6; // Show 6 jobs at a time for the initial load, then add by this increment
-    const allJobs = [  // This will hold all our job data
+    let jobCount = 0;
+    const jobsToAdd = 6;
+
+    const allJobs = [
         {
             title: 'Chef de Service Éducation Financière',
             company: 'Autorité Marocaine du Marché des Capitaux',
@@ -12,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
             domaine: 'Finance, économie ou en ingénierie',
             formation: 'Bac +5',
             experience: 'De 5 à 8 ans',
-            nombrePoste: '1'
+            nombrePoste: '1',
+            link: 'Blogs/chef-service.html'
         },
         {
             title: 'Cadre Gestionnaire de Facturation',
@@ -20,8 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Dakhla',
             domaine: 'Gestion, Finances, Comptabilité, Logistique, Commerce ou équivalent.',
             formation: 'Bac +5',
-            experience: 'Debutant',
+            experience: 'Débutant',
             nombrePoste: '1',
+            link: 'Blogs/cadre-facturation.html'
         },
         {
             title: 'Cadre Planification',
@@ -31,10 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
             formation: 'Ingénieur',
             experience: 'De 1 à 2 ans',
             nombrePoste: '1',
-
+            link: 'Blogs/cadre-planification.html'
         },
-        
-         
+        // Add more jobs here with different `link` values
     ];
 
     function createJobCard(job, index) {
@@ -46,46 +49,42 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="company">${job.company}</p>
             <p class="location">${job.location}</p>
             <p class="domaine">Domaine: ${job.domaine}</p>
-            <a href="Blogs/job-board.html" class="view-more-button" data-index="${index}">Voir plus</a>
+            <a href="${job.link}" class="view-more-button" data-index="${index}">Voir plus</a>
         `;
         return jobCard;
     }
 
-   function addJobs(start, count) {
-        const end = Math.min(start + count, allJobs.length); // Ensure we don't go beyond the total number of jobs
+    function addJobs(start, count) {
+        const end = Math.min(start + count, allJobs.length);
         for (let i = start; i < end; i++) {
             const job = allJobs[i];
             const jobCard = createJobCard(job, i);
             jobListingsContainer.appendChild(jobCard);
         }
 
-        jobCount = end;  // Update jobCount to the new end value
+        jobCount = end;
 
         if (jobCount >= allJobs.length) {
-            loadMoreButton.style.display = 'none'; // Hide the button when all jobs are loaded
+            loadMoreButton.style.display = 'none';
         }
-
-
     }
 
-    // Store job data in local storage for use on the job board page
     function storeJobData(index) {
-      localStorage.setItem('selectedJobIndex', index);
+        const job = allJobs[index];
+        localStorage.setItem('selectedJob', JSON.stringify(job));
     }
 
-
-    jobListingsContainer.addEventListener('click', function(event) {
+    jobListingsContainer.addEventListener('click', function (event) {
         if (event.target.classList.contains('view-more-button')) {
             const jobIndex = event.target.dataset.index;
             storeJobData(jobIndex);
         }
     });
 
-    // Event listener for "Plus d'offres" button
-    loadMoreButton.addEventListener('click', function() {
+    loadMoreButton.addEventListener('click', function () {
         addJobs(jobCount, jobsToAdd);
     });
 
-    // Initial load of jobs
-     addJobs(0, jobsToAdd);  // Load initial set of jobs
+    addJobs(0, jobsToAdd);
 });
+</script>
