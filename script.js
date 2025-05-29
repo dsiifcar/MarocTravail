@@ -6,15 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const jobsToAdd = 6; // Show 6 jobs at a time for the initial load, then add by this increment
     const allJobs = [  // This will hold all our job data
         {
-            title: 'Ingénieur Logiciel',
-            company: 'Acme Corp',
-            location: 'Casablanca',
-            domaine: 'Informatique',
-            formation: 'Bac +5 en Informatique',
-            experience: '3 ans minimum',
-            nombrePoste: '2',
-            description: 'Nous recherchons un ingénieur logiciel talentueux avec de l\'expérience en Java et React. Plus de détails ici...',
-            applyLink: 'https://www.google.com'
+            title: 'Chef de Service Éducation Financière',
+            company: 'Autorité Marocaine du Marché des Capitaux',
+            location: 'Rabat',
+            domaine: 'Finance, économie ou en ingénierie',
+            formation: 'Bac +5',
+            experience: 'De 5 à 8 ans',
+            nombrePoste: '1'
         },
         {
             title: 'Responsable Marketing',
